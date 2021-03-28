@@ -1,0 +1,77 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
+}
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
+
+    defaultConfig {
+        applicationId "com.benmohammad.mvi2"
+        minSdkVersion 21
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    def rxBindingsVersion = '3.0.0'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.core:core-ktx:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'com.google.android.material:material:1.0.0'
+
+    //rxandroid
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.11'
+    //rxkotlin
+    implementation 'io.reactivex.rxjava2:rxkotlin:2.4.0'
+    //rxbindings
+    implementation "com.jakewharton.rxbinding3:rxbinding:$rxBindingsVersion"
+    //androidx bindings
+    implementation "com.jakewharton.rxbinding3:rxbinding:$rxBindingsVersion"
+    implementation "com.jakewharton.rxbinding3:rxbinding:$rxBindingsVersion"
+    implementation "com.jakewharton.rxbinding3:rxbinding-core:$rxBindingsVersion"
+    implementation "com.jakewharton.rxbinding3:rxbinding-appcompat:$rxBindingsVersion"
+    implementation "com.jakewharton.rxbinding3:rxbinding-drawerlayout:$rxBindingsVersion"
+    implementation "com.jakewharton.rxbinding3:rxbinding-leanback:$rxBindingsVersion"
+    implementation "com.jakewharton.rxbinding3:rxbinding-recyclerview:$rxBindingsVersion"
+    implementation "com.jakewharton.rxbinding3:rxbinding-slidingpanelayout:$rxBindingsVersion"
+    implementation "com.jakewharton.rxbinding3:rxbinding-swiperefreshlayout:$rxBindingsVersion"
+    implementation "com.jakewharton.rxbinding3:rxbinding-viewpager:$rxBindingsVersion"
+    //material bindings
+    implementation "com.jakewharton.rxbinding3:rxbinding-material:$rxBindingsVersion"
+    //rxrelay
+    implementation 'com.jakewharton.rxrelay2:rxrelay:2.1.1'
+    //recyclerview
+    implementation 'androidx.recyclerview:recyclerview:1.1.0-beta04'
+    //dagger2
+    api 'com.google.dagger:dagger:2.16'
+    kapt 'com.google.dagger:dagger-compiler:2.16'
+
+    implementation 'com.jakewharton.timber:timber:4.7.1'
+
+
+}
