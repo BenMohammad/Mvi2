@@ -13,7 +13,7 @@ fun <T> intent(block: T.() -> T): Intent<T> {
     }
 }
 
-fun <T> sideEffect(block: T.() -> Unit): Intent<T> {
+fun <T> sideEffect(block: () -> Unit): Intent<T> {
     return intent {
         block()
         this

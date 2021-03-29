@@ -6,6 +6,7 @@ import com.benmohammad.mvi2.mvi.intent
 import com.benmohammad.mvi2.screens.todolist.TodoIntentFactory
 import io.reactivex.internal.subscriptions.SubscriptionHelper.cancel
 import java.lang.IllegalStateException
+import java.nio.file.Files.delete
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -24,7 +25,7 @@ class AddEditTodoIntentFactory @Inject constructor(
             is AddEditTodoViewEvent.TitleChange -> buildTitleChangeIntent(viewEvent)
             is AddEditTodoViewEvent.DescriptionChange -> buildEditDescriptionChangeIntent(viewEvent)
             AddEditTodoViewEvent.SaveTaskClick -> buildSaveTaskIntent()
-            AddEditTodoViewEvent.DeleteTaskClick -> TODO()
+            AddEditTodoViewEvent.DeleteTaskClick -> buildDeleteTaskIntent()
             AddEditTodoViewEvent.CancelTaskClick -> buildCancelIntent()
         }
     }
@@ -34,6 +35,14 @@ class AddEditTodoIntentFactory @Inject constructor(
             cancel()
         }
     }
+
+    private fun buildDeleteTaskIntent(): Intent<TodoEditorState> {
+        return editorIntent<TodoEditorState.Editing> {
+            delete()
+        }
+    }
+
+
 
     private fun buildEditDescriptionChangeIntent(descriptionChange: AddEditTodoViewEvent.DescriptionChange): Intent<TodoEditorState> {
         return editorIntent<TodoEditorState.Editing> {
@@ -53,11 +62,8 @@ class AddEditTodoIntentFactory @Inject constructor(
             }
         }
 
-        private fun buildSaveTaskIntent(): Intent<TodoEditorState> {
-            return editorIntent<TodoEditorState.Editing> {
-                save()
-            }
-        }
+
+
 
         private fun buildTitleChangeIntent(titleChange: AddEditTodoViewEvent.TitleChange): Intent<TodoEditorState> {
             return editorIntent<TodoEditorState.Editing> {
@@ -71,6 +77,12 @@ class AddEditTodoIntentFactory @Inject constructor(
         fun buildAddTaskIntent(todo: TodoEntity): Intent<TodoEditorState> {
             return editorIntent<TodoEditorState.Closed> {
                 addTodo(todo)
+            }
+        }
+
+        private fun buildSaveTaskIntent(): Intent<TodoEditorState> {
+            return editorIntent<TodoEditorState.Editing> {
+                save()
             }
         }
     }

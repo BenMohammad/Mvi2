@@ -31,8 +31,15 @@ class TodoIntentFactory @Inject constructor(
             TodoListViewEvent.RefreshTodoClick -> TODO()
             TodoListViewEvent.PullRefreshSwipe -> TODO()
             is TodoListViewEvent.CompleteTodoClick -> buildCompleteTaskClick(viewEvent.task, viewEvent.checked)
-            is TodoListViewEvent.EditTaskClicked -> TODO()
+            is TodoListViewEvent.EditTaskClicked -> buildEditTaskClick(viewEvent.task)
         }
+    }
+
+    private fun buildEditTaskClick(task: TodoEntity): Intent<TodoListState> {
+        return sideEffect {
+            
+        }
+
     }
 
     private fun buildCompleteTaskClick(todo: TodoEntity, checked: Boolean): Intent<TodoListState> {
@@ -42,6 +49,8 @@ class TodoIntentFactory @Inject constructor(
             copy(todos = mutableTodos)
         }
     }
+
+
 
     private fun buildNewTodoIntent(): Intent<TodoListState> {
         return sideEffect {
