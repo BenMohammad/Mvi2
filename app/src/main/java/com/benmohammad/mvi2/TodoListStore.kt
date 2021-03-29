@@ -2,7 +2,9 @@ package com.benmohammad.mvi2
 
 import com.benmohammad.mvi2.mvi.ModelStore
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class TodoListStore @Inject constructor(): ModelStore<TodoListState>(
     TodoListState(
         listOf(
